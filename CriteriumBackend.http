@@ -1,0 +1,6 @@
+@CriteriumBackend_HostAddress = http://localhost:5074
+
+GET {{CriteriumBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
