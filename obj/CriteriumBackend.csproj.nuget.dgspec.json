@@ -44,13 +44,13 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
-            "Microsoft.AspNetCore.OpenApi": {
-              "target": "Package",
-              "version": "[9.0.6, )"
-            },
             "MongoDB.Driver": {
               "target": "Package",
-              "version": "[3.6.0, )"
+              "version": "[2.23.1, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
             }
           },
           "imports": [

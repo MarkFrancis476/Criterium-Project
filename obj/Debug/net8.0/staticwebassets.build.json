@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "41qehbefhuYM/i9eTnAo53WJizy0mVy3DatP4fsyeyg=",
+  "Source": "CriteriumBackend",
+  "BasePath": "_content/CriteriumBackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
