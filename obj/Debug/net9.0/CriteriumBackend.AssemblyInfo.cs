@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CriteriumBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+552fcfc5c56a62f598745955e5a68e44fb330a2c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+57fde53fbfa0c9c7829aed74249f20d30343b556")]
 [assembly: System.Reflection.AssemblyProductAttribute("CriteriumBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CriteriumBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

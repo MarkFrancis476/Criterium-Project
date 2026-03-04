@@ -74,5 +74,43 @@ namespace CriteriumBackend.Controllers
 
             return NoContent();
         }
+
+        // ==========================================================
+        // 🚀 ENDPOINT SEMANA 3: BÚSQUEDA CON MANEJO DE ERRORES
+        // ==========================================================
+        [HttpGet("Search")]
+        public async Task<IActionResult> SearchProjects([FromQuery] SearchFilterDto filters)
+        {
+            // 1. Validaciones robustas (Requisito Semana 3)
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new 
+                { 
+                    mensaje = "Parámetros de búsqueda inválidos", 
+                    errores = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) 
+                });
+            }
+
+            try
+            {
+                // 2. Llamada al servicio optimizado
+                var resultados = await _assignmentsService.SearchDashboardAsync(
+                    filters.SearchQuery, 
+                    filters.Page, 
+                    filters.PageSize
+                );
+                
+                return Ok(resultados);
+            }
+            catch (Exception ex)
+            {
+                // 3. Manejo de errores para que el servidor no se caiga
+                return StatusCode(500, new 
+                { 
+                    mensaje = "Error interno al buscar los proyectos en la base de datos.", 
+                    detalle = ex.Message 
+                });
+            }
+        }
     }
 }

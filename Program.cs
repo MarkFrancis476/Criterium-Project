@@ -2,6 +2,17 @@ using CriteriumBackend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Permitir que el Frontend se conecte sin bloqueos (CORS)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 // 1. Agregar el servicio de MongoDB (Ya lo tenías)
 builder.Services.AddSingleton<AssignmentsService>();
 
@@ -21,7 +32,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
+
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 

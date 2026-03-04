@@ -8,13 +8,13 @@ namespace CriteriumBackend.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
-        public string Name { get; set; }
-        public string Section { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Section { get; set; } = string.Empty;
         
         [BsonRepresentation(BsonType.ObjectId)]
-        public string TeacherId { get; set; }
+        public string? TeacherId { get; set; }
         
         public List<string> StudentIds { get; set; } = new List<string>();
     }

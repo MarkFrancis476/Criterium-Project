@@ -1,5 +1,6 @@
 using CriteriumBackend.Models;
 using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace CriteriumBackend.Services
 {
@@ -37,5 +38,42 @@ namespace CriteriumBackend.Services
         // 5. ELIMINAR (DELETE)
         public async Task RemoveAsync(string id) =>
             await _assignmentsCollection.DeleteOneAsync(x => x.Id == id);
+
+        // ==========================================================
+        // 🚀 CÓDIGO SEMANA 3: OPTIMIZACIÓN Y BUSCADOR AVANZADO
+        // ==========================================================
+        public async Task<object> SearchDashboardAsync(string? searchQuery, int page = 1, int pageSize = 10)
+        {
+            var builder = Builders<Assignment>.Filter;
+            var filter = builder.Empty; // Por defecto trae todo
+
+            // Sistema de Búsqueda
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                // Regex "i" significa que ignora mayúsculas y minúsculas
+                var searchRegex = new BsonRegularExpression(searchQuery, "i");
+                
+                // Busca si la palabra coincide con el Título o la Descripción del proyecto
+                filter &= builder.Or(
+                    builder.Regex(x => x.Title, searchRegex),
+                    builder.Regex(x => x.Description, searchRegex)
+                );
+            }
+
+            // Optimización: Paginación para no saturar la RAM (Requisito Semana 3)
+            var skip = (page - 1) * pageSize;
+
+            var resultados = await _assignmentsCollection.Find(filter)
+                .Skip(skip)
+                .Limit(pageSize)
+                .ToListAsync();
+
+            return new 
+            { 
+                paginaActual = page, 
+                totalResultadosEnPagina = resultados.Count,
+                proyectos = resultados 
+            };
+        }
     }
 }
