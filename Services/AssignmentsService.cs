@@ -39,6 +39,13 @@ namespace CriteriumBackend.Services
         public async Task RemoveAsync(string id) =>
             await _assignmentsCollection.DeleteOneAsync(x => x.Id == id);
 
+        // 6. AGREGAR ARCHIVO A PROYECTO EXISTENTE (PUT)
+        public async Task AddFileUrlAsync(string id, string fileUrl)
+        {
+            var update = Builders<Assignment>.Update.Push(x => x.FileUrls, fileUrl);
+            await _assignmentsCollection.UpdateOneAsync(x => x.Id == id, update);
+        }
+
         // ==========================================================
         // 🚀 CÓDIGO SEMANA 3: OPTIMIZACIÓN Y BUSCADOR AVANZADO
         // ==========================================================

@@ -1,44 +1,53 @@
-using CriteriumBackend.Services;
+using CriteriumBackend.Models; // 👈 Crucial para corregir el error CriteriumDatabaseSettings
+using CriteriumBackend.Services; // 👈 Crucial para reconocer AssignmentsService
+using CloudinaryDotNet; 
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Permitir que el Frontend se conecte sin bloqueos (CORS)
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll", policy =>
-    {
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader();
-    });
-});
+// ==========================================
+// 1. CONFIGURACIÓN DE CLOUDINARY (LA NUBE)
+// ==========================================
+var cloudinaryAccount = new Account(
+    "dbquxjibn",           // Tu Cloud Name
+    "431769186783491",     // Tu API Key
+    "6A6BJC6bDNghU2KwsFDlkNZjDTM"   // ⚠️ REEMPLAZA ESTO CON TU SECRET COMPLETO
+);
+var cloudinary = new Cloudinary(cloudinaryAccount);
+builder.Services.AddSingleton(cloudinary); 
 
-// 1. Agregar el servicio de MongoDB (Ya lo tenías)
+// ==========================================
+// 2. CONFIGURACIÓN DE TU BASE DE DATOS
+// ==========================================
+builder.Services.Configure<CriteriumDatabaseSettings>(
+    builder.Configuration.GetSection("CriteriumDatabase"));
+
 builder.Services.AddSingleton<AssignmentsService>();
 
-// 2. Agregar soporte para Controladores (¡ESTO ES NUEVO!)
+// ==========================================
+// 3. SERVICIOS BASE DEL SISTEMA
+// ==========================================
 builder.Services.AddControllers();
-
-// Configuración de OpenAPI/Swagger (Para probar la API)
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Habilitar CORS para que tu celular pueda hablar con la laptop
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+});
+
 var app = builder.Build();
 
-// Configurar el pipeline HTTP
+// Configuración del pipeline HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-//app.UseHttpsRedirection();
-
 app.UseCors("AllowAll");
-
 app.UseAuthorization();
-
-// 3. Activar los Controladores (¡ESTO ES NUEVO!)
 app.MapControllers();
 
 app.Run();

@@ -1,0 +1,15 @@
+  Determining projects to restore...
+C:\Users\holip\CriteriumBackend\CriteriumBackend.csproj : warning NU1900: Error al obtener los datos de vulnerabilidad del paquete: Host desconocido. (api.nuget.org:443) [C:\Users\holip\CriteriumBackend\CriteriumBackend.sln]
+  All projects are up-to-date for restore.
+C:\Users\holip\CriteriumBackend\CriteriumBackend.csproj : warning NU1900: Error al obtener los datos de vulnerabilidad del paquete: Host desconocido. (api.nuget.org:443)
+C:\Users\holip\CriteriumBackend\Controllers\AssignmentsController.cs(110,21): error CS0200: Property or indexer 'ImageUploadParams.ResourceType' cannot be assigned to -- it is read only [C:\Users\holip\CriteriumBackend\CriteriumBackend.csproj]
+
+Build FAILED.
+
+C:\Users\holip\CriteriumBackend\CriteriumBackend.csproj : warning NU1900: Error al obtener los datos de vulnerabilidad del paquete: Host desconocido. (api.nuget.org:443) [C:\Users\holip\CriteriumBackend\CriteriumBackend.sln]
+C:\Users\holip\CriteriumBackend\CriteriumBackend.csproj : warning NU1900: Error al obtener los datos de vulnerabilidad del paquete: Host desconocido. (api.nuget.org:443)
+C:\Users\holip\CriteriumBackend\Controllers\AssignmentsController.cs(110,21): error CS0200: Property or indexer 'ImageUploadParams.ResourceType' cannot be assigned to -- it is read only [C:\Users\holip\CriteriumBackend\CriteriumBackend.csproj]
+    2 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:07.25

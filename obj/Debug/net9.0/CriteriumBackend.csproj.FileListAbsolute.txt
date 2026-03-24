@@ -47,3 +47,6 @@ C:\Users\holip\CriteriumBackend\obj\Debug\net9.0\refint\CriteriumBackend.dll
 C:\Users\holip\CriteriumBackend\obj\Debug\net9.0\CriteriumBackend.pdb
 C:\Users\holip\CriteriumBackend\obj\Debug\net9.0\CriteriumBackend.genruntimeconfig.cache
 C:\Users\holip\CriteriumBackend\obj\Debug\net9.0\ref\CriteriumBackend.dll
+C:\Users\holip\CriteriumBackend\bin\Debug\net9.0\CriteriumBackend.staticwebassets.runtime.json
+C:\Users\holip\CriteriumBackend\bin\Debug\net9.0\CloudinaryDotNet.dll
+C:\Users\holip\CriteriumBackend\bin\Debug\net9.0\Newtonsoft.Json.dll

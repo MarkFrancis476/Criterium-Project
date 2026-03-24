@@ -1,36 +1,52 @@
-using System;
-using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System.Collections.Generic;
 
 namespace CriteriumBackend.Models
 {
+    [BsonIgnoreExtraElements] // Protege contra campos viejos
     public class Assignment
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; } 
+        public string? Id { get; set; }
 
+        [BsonElement("title")]
         public string Title { get; set; } = string.Empty;
 
+        [BsonElement("name")]
+        public string Name { get; set; } = string.Empty;
+
+        [BsonElement("subject")]
+        public string Subject { get; set; } = string.Empty;
+
+        [BsonElement("description")]
         public string Description { get; set; } = string.Empty;
 
-        public DateTime DueDate { get; set; }
+        [BsonElement("members")]
+        public List<string> Members { get; set; } = new List<string>();
 
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string? ClassGroupId { get; set; }
+        [BsonElement("technologies")]
+        public List<string> Technologies { get; set; } = new List<string>();
 
+        [BsonElement("status")]
+        public string Status { get; set; } = "Pendiente";
+
+        // 🔥 LA SOLUCIÓN AL CRASH 🔥
+        [BsonElement("fileUrls")]
+        public List<string> FileUrls { get; set; } = new List<string>();
+
+        [BsonElement("coverImageUrl")]
+        public string CoverImageUrl { get; set; } = string.Empty;
+
+        [BsonElement("time")]
+        public string Time { get; set; } = string.Empty;
+
+        // Mantenemos estos para que no exploten los proyectos muy viejos
+        [BsonElement("fileUrl")]
+        public string? FileUrl { get; set; }
+        
+        [BsonElement("attachedFileUrl")]
         public string? AttachedFileUrl { get; set; }
-        public string? AttachedFileName { get; set; }
-
-        public List<string> EvaluatorComments { get; set; } = new List<string>();
-
-        public List<RubricCriteria> Rubric { get; set; } = new List<RubricCriteria>();
-    }
-
-    public class RubricCriteria
-    {
-        public string CriteriaName { get; set; } = string.Empty;
-        public int MaxPoints { get; set; }
     }
 }
