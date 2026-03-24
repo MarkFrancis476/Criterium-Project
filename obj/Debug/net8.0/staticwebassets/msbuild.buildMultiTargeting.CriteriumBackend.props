@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\CriteriumBackend.props" />
-</Project>
